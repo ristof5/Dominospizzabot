@@ -42,7 +42,7 @@ def get_response(user_input):
         return "Maaf, saya tidak dapat menemukan jawaban untuk pertanyaan Anda. Silakan coba pertanyaan lain atau hubungi layanan pelanggan kami."
 
 # Load API Token
-API_TOKEN = '8048423270:AAFOGJt370ji1KvIIiIPDcvERBVWN6Bg9Cw'
+API_TOKEN = ''
 
 # Define start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
