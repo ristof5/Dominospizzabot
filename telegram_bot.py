@@ -9,6 +9,7 @@ from telegram.ext import (
     filters,
     ContextTypes
 )
+import os  # Untuk mengambil token dari environment variables
 
 # Load dataset
 try:
@@ -41,8 +42,8 @@ def get_response(user_input):
     else:
         return "Maaf, saya tidak dapat menemukan jawaban untuk pertanyaan Anda. Silakan coba pertanyaan lain atau hubungi layanan pelanggan kami."
 
-# Load API Token
-API_TOKEN = ''
+# Load API Token securely from environment variables
+API_TOKEN = os.getenv("BOT_TOKEN")  # Token disimpan di Secrets Replit
 
 # Define start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -57,6 +58,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
 # Main function to start the bot
 def main():
+    if not API_TOKEN:
+        print("Error: API Token tidak ditemukan. Pastikan Anda telah menyimpannya di Secrets Replit dengan nama 'BOT_TOKEN'.")
+        exit()
+
     application = ApplicationBuilder().token(API_TOKEN).build()
 
     # Add handlers
